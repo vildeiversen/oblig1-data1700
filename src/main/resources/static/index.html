@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kinobillett Bestilling Oblig 1</title>
+
+    <style>
+        .feilmelding {
+            margin-left: 5px;
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+<h1>Kinobillett Bestilling</h1>
+
+<h2>Bestill Billett</h2>
+
+<!-- Rullegardinmeny for filmvalg -->
+<label for="film">Velg film:</label>
+<select id="film">
+    <option value="">Velg film</option>
+    <option value="Film1">Film 1</option>
+    <option value="Film2">Film 2</option></select>
+<span id="film-feilmelding" class="feilmelding" style="color: red;"></span>
+<br>
+
+<!-- Antall billetter input -->
+<label for="antallBilletter">Antall Billetter:</label>
+<input type="number" id="antallBilletter" min="1">
+<span id="antallBilletter-feilmelding" class="feilmelding" style="color: red;"></span>
+<br>
+
+<!-- Fornavn input -->
+<label for="fornavn">Fornavn:</label>
+<input type="text" id="fornavn">
+<span id="fornavn-feilmelding" class="feilmelding" style="color: red;"></span>
+<br>
+
+<!-- Etternavn input -->
+<label for="etternavn">Etternavn:</label>
+<input type="text" id="etternavn">
+<span id="etternavn-feilmelding" class="feilmelding" style="color: red;"></span>
+<br>
+
+<!-- Epost input -->
+<label for="epost">E-post:</label>
+<input type="email" id="epost">
+<span id="epost-feilmelding" class="feilmelding" style="color: red;"></span>
+<br>
+
+<button onclick="kjopBillett()">Kjøp Billett</button>
+
+<h2>Alle Billetter</h2>
+<div id="alleBilletterContainer"></div>
+
+<button onclick="slettAlleBilletter()">Slett alle billetter</button>
+<script src="app.js"></script>
+
+
+</body>
+</html>
