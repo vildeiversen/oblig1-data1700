@@ -1,4 +1,4 @@
-# Oblig1 Data1700
+# Oblig2 Data1700
 
 Oslomet brukernavn: s375139
 
