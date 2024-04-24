@@ -16,18 +16,17 @@
     <h1>Kinobillett Bestilling</h1>
     <h2>Bestill Billett</h2>
 
-    <!-- Rullegardinmeny for filmvalg -->
-    <div class="form-group">
-        <label for="film">Velg film:</label>
-        <select id="film" class="form-control">
-            <option value="">Velg film</option>
-            <option value="Film1">Film 1</option>
-            <option value="Film2">Film 2</option>
-        </select>
-        <span id="film-feilmelding" class="feilmelding"></span>
-    </div>
-
     <form id="billettSkjema">
+        <!-- Rullegardinmeny for filmvalg -->
+        <div class="form-group">
+            <label for="film">Velg film:</label>
+            <select id="film" class="form-control">
+                <option value="">Velg film</option>
+                <option value="Film1">Film 1</option>
+                <option value="Film2">Film 2</option>
+            </select>
+            <span id="film-feilmelding" class="feilmelding"></span>
+        </div>
 
         <!-- Antall billetter input -->
         <div class="form-group">
@@ -57,9 +56,8 @@
             <span id="epost-feilmelding" class="feilmelding"></span>
         </div>
 
+        <button type="button" onclick="kjopBillett()" class="btn btn-primary">Kjøp Billett</button>
     </form>
-
-    <button onclick="kjopBillett()" class="btn btn-primary">Kjøp Billett</button>
 
     <h2>Alle Billetter</h2>
     <div id="alleBilletterContainer"></div>

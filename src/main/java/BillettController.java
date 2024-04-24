@@ -8,7 +8,7 @@ import java.util.List;
 @RequestMapping("/api/billetter")
 public class BillettController {
 
-    private List<Billett> billettListe = new ArrayList<>();
+    private final List<Billett> billettListe = new ArrayList<>();
 
     @PostMapping("/kjop")
     public Billett kjopBillett(@RequestBody Billett billett) {
