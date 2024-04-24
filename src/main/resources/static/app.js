@@ -1,4 +1,3 @@
-
 let billettArray = [];
 
 // Feilmeldinger
@@ -10,7 +9,7 @@ let feilmeldinger = {
     epost: document.getElementById('epost-feilmelding')
 };
 
-// Funksjon for å nullstille feilmeldinger
+// Nullstill feilmeldinger
 function nullstillFeilmeldinger() {
     for (let key in feilmeldinger) {
         feilmeldinger[key].textContent = '';
@@ -56,6 +55,7 @@ function kjopBillett() {
     // Hent verdier fra input-feltene
     let { film, antallBilletter, fornavn, etternavn, epost } = hentInputVerdier();
 
+    // Nullstill feilmeldinger
     nullstillFeilmeldinger();
 
     // Validering av input-feltene
@@ -69,11 +69,11 @@ function kjopBillett() {
         valideringOK = false;
     }
 
-    if (!validerInput('fornavn', 'fornavn-feilmelding', 'Feltet må fylles ut')) {
+    if (!validerInput('fornavn', 'fornavn-feilmelding', 'Feltet må fylles ut') || !erGyldigNavn(fornavn)) {
         valideringOK = false;
     }
 
-    if (!validerInput('etternavn', 'etternavn-feilmelding', 'Feltet må fylles ut')) {
+    if (!validerInput('etternavn', 'etternavn-feilmelding', 'Feltet må fylles ut') || !erGyldigNavn(etternavn)) {
         valideringOK = false;
     }
 
@@ -100,23 +100,40 @@ function kjopBillett() {
         // Vis alle billetter
         visAlleBilletter();
 
-        // Nullstill input-feltene
-        document.getElementById('film').value = '';
-        document.getElementById('antallBilletter').value = '';
-        document.getElementById('fornavn').value = '';
-        document.getElementById('etternavn').value = '';
-        document.getElementById('epost').value = '';
+        // Nullstill inputfeltene ved å resette skjemaet
+        document.getElementById('billettSkjema').reset();
     }
+}
+
+
+// Fortsett bare hvis validering er OK
+if (valideringOK) {
+    // Opprett billettobjekt
+    let billett = {
+        film: film,
+        antallBilletter: antallBilletter,
+        fornavn: fornavn,
+        etternavn: etternavn,
+        epost: epost
+    };
+
+    // Legg til billettobjektet i arrayet
+    billettArray.push(billett);
+
+    // Vis alle billetter
+    visAlleBilletter();
+
 }
 
 // Funksjon for å vise alle billetter
 function visAlleBilletter() {
     let billetterListe = document.getElementById('alleBilletterContainer');
-    billetterListe.innerHTML = '';
+    billetterListe.innerHTML = ''; // Tøm tidligere innhold
 
     for (let i = 0; i < billettArray.length; i++) {
         let billett = billettArray[i];
 
+        // Opprett HTML-elementer for å vise billetten
         let billettElement = document.createElement('div');
         billettElement.innerHTML = `<strong>Film:</strong> ${billett.film}, <strong>Antall billetter:</strong> ${billett.antallBilletter}, <strong>Fornavn:</strong> ${billett.fornavn}, <strong>Etternavn:</strong> ${billett.etternavn}, <strong>E-post:</strong> ${billett.epost}`;
 
@@ -128,4 +145,10 @@ function visAlleBilletter() {
 function slettAlleBilletter() {
     billettArray = [];
     visAlleBilletter(); // Oppdater visningen
+}
+
+// Funksjon for å validere navn
+function erGyldigNavn(navn) {
+    let navnRegex = /^[a-zA-ZæøåÆØÅ\s]+$/;
+    return navnRegex.test(navn);
 }

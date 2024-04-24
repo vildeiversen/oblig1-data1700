@@ -8,4 +8,4 @@ GitHub repo URL: https://github.com/vildeiversen/oblig1-data1700
 
 Fullt navn: Vilde Iversen Røv
 
-Beskrivelse: Oblig 1 Webprogrammering vår 2024, applikasjon for bestilling av kinobilletter. Jeg lot kommentarene mine stå i koden.
+Beskrivelse: Endret HTML og JS kode ut i fra tilbakemelding på oblig1. Stylet med Bootstrap. Opprettet Billett klassen og BillettController for å lagre billettene i et array på tjener/server. Og oppdatert README.md fil.
