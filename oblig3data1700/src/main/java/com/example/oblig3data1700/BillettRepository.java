@@ -9,21 +9,25 @@ import java.util.List;
 
 @Repository
 public class BillettRepository {
-    @Autowired
-    private JdbcTemplate db;
+    private final JdbcTemplate db;
 
-    public void lagreBillett(Billett innBillett){
+    @Autowired
+    public BillettRepository(JdbcTemplate db) {
+        this.db = db;
+    }
+
+    public void kjopBillett(Billett innBillett){
         String sql = "INSERT INTO Billett (film, antallBilletter, fornavn, etternavn, epost) VALUES(?,?,?,?,?)";
         db.update(sql, innBillett.getFilm(), innBillett.getAntallBilletter(), innBillett.getFornavn(), innBillett.getEtternavn(), innBillett.getEpost());
-
     }
+
     public List<Billett> hentAlleBilletter(){
-        String sql = "SELECT ALL FROM Billett";
-        List<Billett> alleBilletter = db.query(sql, new BeanPropertyRowMapper(Billett.class));
+        String sql = "SELECT * FROM Billett";
+        List<Billett> alleBilletter = db.query(sql, new BeanPropertyRowMapper<>(Billett.class));
         return alleBilletter;
     }
 
-    public void slettAlleKunder(){
+    public void slettAlleBilletter(){
         String sql = "DELETE FROM Billett";
         db.update(sql);
     }

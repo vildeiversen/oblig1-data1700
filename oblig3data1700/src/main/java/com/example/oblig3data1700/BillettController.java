@@ -1,29 +1,30 @@
 package com.example.oblig3data1700;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/billetter")
 public class BillettController {
 
-    private final List<Billett> billettListe = new ArrayList<>();
+    @Autowired
+    BillettRepository billettRepository;
 
     @PostMapping("/kjop")
-    public Billett kjopBillett(@RequestBody Billett billett) {
-        billettListe.add(billett);
-        return billett;
+    public void kjopBillett(Billett innBillett) {
+        billettRepository.kjopBillett(innBillett);
     }
 
     @GetMapping("/alle")
     public List<Billett> hentAlleBilletter() {
-        return billettListe;
+        return billettRepository.hentAlleBilletter();
     }
 
-    @DeleteMapping("/slett")
+    @GetMapping("/slettAlle")
     public void slettAlleBilletter() {
-        billettListe.clear();
+        billettRepository.slettAlleBilletter();
     }
 }

@@ -8,6 +8,9 @@ public class Billett {
     private String etternavn;
     private String epost;
 
+    public Billett() {
+    }
+
     // Getters og Setters
 
     public String getFilm() {
