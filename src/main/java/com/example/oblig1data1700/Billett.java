@@ -1,3 +1,5 @@
+package com.example.oblig1data1700;
+
 public class Billett {
 
     private String film;

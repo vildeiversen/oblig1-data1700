@@ -1,3 +1,4 @@
+package com.example.oblig1data1700;
 
 import org.springframework.web.bind.annotation.*;
 
