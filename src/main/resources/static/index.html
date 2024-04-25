@@ -1,63 +1,70 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Kinobillett Bestilling Oblig 1</title>
-
+    <title>Kinobillett Bestilling Oblig 2</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .feilmelding {
             margin-left: 5px;
             color: red;
         }
     </style>
-
 </head>
 <body>
-<h1>Kinobillett Bestilling</h1>
+<div class="container mt-5">
+    <h1>Kinobillett Bestilling</h1>
+    <h2>Bestill Billett</h2>
 
-<h2>Bestill Billett</h2>
+    <form id="billettSkjema">
+        <!-- Rullegardinmeny for filmvalg -->
+        <div class="form-group">
+            <label for="film">Velg film:</label>
+            <select id="film" class="form-control">
+                <option value="">Velg film</option>
+                <option value="Film1">Film 1</option>
+                <option value="Film2">Film 2</option>
+            </select>
+            <span id="film-feilmelding" class="feilmelding"></span>
+        </div>
 
-<!-- Rullegardinmeny for filmvalg -->
-<label for="film">Velg film:</label>
-<select id="film">
-    <option value="">Velg film</option>
-    <option value="Film1">Film 1</option>
-    <option value="Film2">Film 2</option></select>
-<span id="film-feilmelding" class="feilmelding" style="color: red;"></span>
-<br>
+        <!-- Antall billetter input -->
+        <div class="form-group">
+            <label for="antallBilletter">Antall Billetter:</label>
+            <input type="number" id="antallBilletter" class="form-control" min="1">
+            <span id="antallBilletter-feilmelding" class="feilmelding"></span>
+        </div>
 
-<!-- Antall billetter input -->
-<label for="antallBilletter">Antall Billetter:</label>
-<input type="number" id="antallBilletter" min="1">
-<span id="antallBilletter-feilmelding" class="feilmelding" style="color: red;"></span>
-<br>
+        <!-- Fornavn input -->
+        <div class="form-group">
+            <label for="fornavn">Fornavn:</label>
+            <input type="text" id="fornavn" class="form-control">
+            <span id="fornavn-feilmelding" class="feilmelding"></span>
+        </div>
 
-<!-- Fornavn input -->
-<label for="fornavn">Fornavn:</label>
-<input type="text" id="fornavn">
-<span id="fornavn-feilmelding" class="feilmelding" style="color: red;"></span>
-<br>
+        <!-- Etternavn input -->
+        <div class="form-group">
+            <label for="etternavn">Etternavn:</label>
+            <input type="text" id="etternavn" class="form-control">
+            <span id="etternavn-feilmelding" class="feilmelding"></span>
+        </div>
 
-<!-- Etternavn input -->
-<label for="etternavn">Etternavn:</label>
-<input type="text" id="etternavn">
-<span id="etternavn-feilmelding" class="feilmelding" style="color: red;"></span>
-<br>
+        <!-- Epost input -->
+        <div class="form-group">
+            <label for="epost">E-post:</label>
+            <input type="email" id="epost" class="form-control">
+            <span id="epost-feilmelding" class="feilmelding"></span>
+        </div>
 
-<!-- Epost input -->
-<label for="epost">E-post:</label>
-<input type="email" id="epost">
-<span id="epost-feilmelding" class="feilmelding" style="color: red;"></span>
-<br>
+        <button type="button" onclick="kjopBillett()" class="btn btn-primary">Kjøp Billett</button>
+    </form>
 
-<button onclick="kjopBillett()">Kjøp Billett</button>
+    <h2>Alle Billetter</h2>
+    <div id="alleBilletterContainer"></div>
 
-<h2>Alle Billetter</h2>
-<div id="alleBilletterContainer"></div>
-
-<button onclick="slettAlleBilletter()">Slett alle billetter</button>
+    <button onclick="slettAlleBilletter()" class="btn btn-danger mt-3">Slett alle billetter</button>
+</div>
 <script src="app.js"></script>
-
-
 </body>
 </html>
