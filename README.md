@@ -1,4 +1,4 @@
-# Oblig 2 Data1700
+# Oblig 3 Data1700
 
 Oslomet brukernavn: s375139
 
@@ -8,4 +8,4 @@ GitHub repo URL: https://github.com/vildeiversen/oblig1-data1700
 
 Fullt navn: Vilde Iversen Røv
 
-Beskrivelse: Endret HTML og JS kode ut i fra tilbakemelding på oblig1. Stylet med Bootstrap. Opprettet Billett klassen og BillettController for å lagre billettene i array på tjener/server. Og oppdatert README.md fil.
+Beskrivelse: Opprettet nytt prosjekt for oblig3 og la inn kopier av filene fra oblig2. Opprettet/endret nødvendige filer og kode for databaselagring. Og oppdatert README.md fil.
