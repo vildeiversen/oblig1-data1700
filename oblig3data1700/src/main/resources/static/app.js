@@ -134,10 +134,13 @@ function visAlleBilletter(billetter) {
 
 // Slett alle billetter funksjon
 function slettAlleBilletter() {
-    visAlleBilletter();
+    $.get( "/slettAlle", function() {
+        hentAlle();
+    });
 }
 
 function erGyldigNavn(navn) {
     let navnRegex = /^[a-zA-ZæøåÆØÅ\s]+$/;
     return navnRegex.test(navn);
 }
+
