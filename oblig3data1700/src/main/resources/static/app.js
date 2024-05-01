@@ -1,6 +1,4 @@
 
-let billettArray = [];
-
 // Feilmeldinger
 let feilmeldinger = {
     film: document.getElementById('film-feilmelding'),
@@ -51,29 +49,26 @@ function validerEpost(epost) {
     return epostRegex.test(epost);
 }
 
+// Funksjon for å hente billetter
+function hentAlle() {
+    $.get( "/alle", function(data) {
+        visAlleBilletter(data);
+    });
+}
+
+// Sende billett til server
 async function sendBillettTilServer(billett) {
     try {
-        const response = await fetch('http://localhost:8080/api/billetter/kjop', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(billett)
+        $.post("/kjop", billett, function (){
+            hentAlle();
         });
 
-        if (!response.ok) {
-            console.error('Kunne ikke sende billett til serveren:', response.statusText);
-            return null;
-        }
-
-        return await response.json();
-
     } catch (error) {
-        console.error('Feil ved sending av billett:', error.message);
         return null;
     }
 }
 
+// Kjøp billett funksjon
 async function kjopBillett() {
     let { film, antallBilletter, fornavn, etternavn, epost } = hentInputVerdier();
 
@@ -114,8 +109,6 @@ async function kjopBillett() {
 
         await sendBillettTilServer(billett);
 
-        billettArray.push(billett);
-
         visAlleBilletter();
 
         if (document.getElementById('billettSkjema')) {
@@ -126,20 +119,21 @@ async function kjopBillett() {
     }
 }
 
-function visAlleBilletter() {
+// Vis billetter funksjon
+function visAlleBilletter(billetter) {
     let billetterListe = document.getElementById('alleBilletterContainer');
     billetterListe.innerHTML = '';
 
-    for (let i = 0; i < billettArray.length; i++) {
-        let billett = billettArray[i];
+    for (let i = 0; i < billetter.length; i++) {
+        let billett = billetter[i];
         let billettElement = document.createElement('div');
         billettElement.innerHTML = `<strong>Film:</strong> ${billett.film}, <strong>Antall billetter:</strong> ${billett.antallBilletter}, <strong>Fornavn:</strong> ${billett.fornavn}, <strong>Etternavn:</strong> ${billett.etternavn}, <strong>E-post:</strong> ${billett.epost}`;
         billetterListe.appendChild(billettElement);
     }
 }
 
+// Slett alle billetter funksjon
 function slettAlleBilletter() {
-    billettArray = [];
     visAlleBilletter();
 }
 
